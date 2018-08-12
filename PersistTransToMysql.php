@@ -6,7 +6,8 @@ global $trendList;
 
 $link = mysqli_link();
 
-$date = $_SERVER['argv'][1] ?? date('Y-m-d', strtotime('-1 days'));
+//$date = $_SERVER['argv'][1] ?? date('Y-m-d', strtotime('-1 days'));
+$date = $_SERVER['argv'][1] ?? date('Y-m-d');
 echo $date, PHP_EOL;
 $path = "/opt/data/stock/$date/";
 

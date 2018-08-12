@@ -17,7 +17,7 @@ function http_get($url, $host, $post = false)
     return $content;
 }
 
-$date = date('Y-m-d');
+$date = $_SERVER['argv'][1] ?? date('Y-m-d');
 $path = "/opt/data/stock/$date/";
 @mkdir($path,0777,true);
 $fileObj = new SplFileObject("/opt/data/stock/code.txt");

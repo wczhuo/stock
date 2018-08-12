@@ -2,8 +2,8 @@
 
 include_once "Init.php";
 
-$date = date('Y-m-d');
-$dateYmd = date('Ymd');
+$date = $_SERVER['argv'][1] ?? date('Y-m-d');
+$dateYmd = date('Ymd',strtotime($date));
 $path = "/opt/data/stock163/$date/";
 @mkdir($path, 0777, true);
 $fileObj = new SplFileObject("/opt/data/stock/code.txt");
