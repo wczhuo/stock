@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
-for dt in `seq -w 1 31`
+month=$1
+dateStart=$2
+dateEnd=$3
+
+for dt in `seq -w ${dateStart} ${dateEnd}`
 do
-    echo "/opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php 2018-07-${dt}"
-    /opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php 2018-07-${dt}
+    echo "/opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php 2018-${month}-${dt}"
+    /opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php 2018-${month}-${dt}
 done

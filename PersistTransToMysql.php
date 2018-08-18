@@ -14,10 +14,19 @@ if ($week == 0 || $week == 6)
 {
     return;
 }
+$dateYmd = date('Ymd', strtotime($date));
+
 echo $date, PHP_EOL;
 $path = "/opt/data/stock/$date/";
 
 $logList = glob("{$path}/*.txt");
+
+if (count($logList))
+{
+    $tableName = "trans_{$dateYmd}";
+    // 创建分表
+    mysqli_query($link, "create table if not exists {$tableName} like trans");
+}
 
 foreach ($logList as $log)
 {
@@ -63,7 +72,7 @@ foreach ($logList as $log)
         for ($index = 0; $index <= $loop; $index++)
         {
             $insertValues = array_slice($values, $index * $step, $step);
-            $insertSql = "insert into trans (symbol,dt,time,amount,price,money,trend) values " . implode(",", $insertValues);
+            $insertSql = "insert into {$tableName} (symbol,dt,time,amount,price,money,trend) values " . implode(",", $insertValues);
             $res = mysqli_query($link, $insertSql);
         }
     }
