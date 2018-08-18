@@ -8,23 +8,47 @@ $link = mysqli_link();
 
 //$date = $_SERVER['argv'][1] ?? date('Y-m-d', strtotime('-1 days'));
 $date = $_SERVER['argv'][1] ?? date('Y-m-d');
+// 跳过非工作日，跳过周五
+$week = date('w', strtotime($date));
+if ($week == 0 || $week == 6)
+{
+    return;
+}
 echo $date, PHP_EOL;
 $path = "/opt/data/stock/$date/";
 
 $logList = glob("{$path}/*.txt");
 
-foreach ($logList as $log) {
+foreach ($logList as $log)
+{
     $pathArr = pathinfo($log);
-    if (empty($pathArr['filename'])) {
+    if (empty($pathArr['filename']))
+    {
         continue;
     }
     $symbol = $pathArr['filename'];
-    preg_match_all("#Array\(('.*?')\)#", file_get_contents($log), $arr);
+    $obj = new SplFileObject($log);
+    preg_match_all("#Array\(('.*?')\)#", str_replace([
+        "\n",
+        "\r"
+    ], [
+        "",
+        ""
+    ], file_get_contents($log)), $arr);
     $values = [];
-    if (!empty($arr[1]) && is_array($arr[1]) && count($arr)) {
-        foreach ($arr[1] as $item) {
-            $itemArr = explode(',', str_replace(["'", " "], ["", ""], $item));
-            if (count($itemArr) == 4) {
+    if (!empty($arr[1]) && is_array($arr[1]) && count($arr))
+    {
+        foreach ($arr[1] as $item)
+        {
+            $itemArr = explode(',', str_replace([
+                "'",
+                " "
+            ], [
+                "",
+                ""
+            ], $item));
+            if (count($itemArr) == 4)
+            {
                 list($time, $amount, $price, $trend) = $itemArr;
                 $trendInt = $trendList[$trend] ?? 0;
                 $money = $amount * $price;
@@ -32,9 +56,16 @@ foreach ($logList as $log) {
             }
         }
 
-        $values = array_slice($values, 0, 10);
-        $insertSql = "insert into trans (symbol,dt,time,amount,price,money,trend) values " . implode(",", $values);
-        $res = mysqli_query($link, $insertSql);
+//        $values = array_slice($values, 0, 10);
+        $len = count($values);
+        $step = 1000;
+        $loop = $len / $step;
+        for ($index = 0; $index <= $loop; $index++)
+        {
+            $insertValues = array_slice($values, $index * $step, $step);
+            $insertSql = "insert into trans (symbol,dt,time,amount,price,money,trend) values " . implode(",", $insertValues);
+            $res = mysqli_query($link, $insertSql);
+        }
     }
 }
 
