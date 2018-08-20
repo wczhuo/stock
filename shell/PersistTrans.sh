@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# 注意换行符必须为LF
+
 #for dt in `seq -w 1 6`
 #do
 #    echo "/opt/app/php/bin/php PersistTransToMysql.php 2018-08-0${dt}"

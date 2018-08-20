@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# 注意换行符必须为LF
+
 month=$1
 dateStart=$2
 dateEnd=$3
