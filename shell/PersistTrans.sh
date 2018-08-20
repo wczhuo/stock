@@ -22,4 +22,9 @@ fi
 cd /opt/data/stock/ && tar -cjf /opt/data/stock.${dt}.tar.bz2 ${dt}/*
 
 # 删除原文件
-cd /opt/data/stock/ && rm -rf /opt/data/stock/${dt}
+#cd /opt/data/stock/ && rm -rf /opt/data/stock/${dt}
+
+# 备份数据库表，并压缩保存
+dtYmd=${dt//-/}
+mysqldump -uroot -pdev_pass stock trans_${dtYmd} > /opt/data/trans_${dtYmd}.sql
+cd /opt/data/ && bzip2 /opt/data/trans_${dtYmd}.sql
