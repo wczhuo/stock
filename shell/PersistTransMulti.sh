@@ -23,13 +23,14 @@ do
 done
 dateList="${dateList}"
 
+cd /opt/data/stock/
 for dt in ${dateList}
 do
     echo ${dt}
 #    echo "/opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php ${dt}"
 #    /opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php ${dt}
     # 数据压缩保存
-    cd /opt/data/stock/ && tar -cjf /opt/data/stock.${dt}.tar.bz2 ${dt}/*
+     tar -cjf /opt/data/stock.${dt}.tar.bz2 ${dt}/*
 
     # 删除原文件
 #    cd /opt/data/stock/ && rm -rf /opt/data/stock/${dt}
