@@ -28,3 +28,4 @@ cd /opt/data/stock/ && tar -cjf /opt/data/stock.${dt}.tar.bz2 ${dt}/*
 dtYmd=${dt//-/}
 mysqldump -uroot -pdev_pass stock trans_${dtYmd} > /opt/data/trans_${dtYmd}.sql
 cd /opt/data/ && bzip2 /opt/data/trans_${dtYmd}.sql
+mv /opt/data/trans_${dtYmd}.sql /opt/case/stock/trans/
