@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# ×¢Òâ»»ÐÐ·û±ØÐëÎªLF
+# æ³¨æ„æ¢è¡Œç¬¦å¿…é¡»ä¸ºLF
 
 #for dt in `seq -w 1 6`
 #do
@@ -18,13 +18,13 @@ fi
 /opt/app/php/bin/php /opt/case/stock/Get163ChdData.php ${dt} > /opt/case/stock/logs/Get163ChdData.php 2>&1
 /opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php ${dt} > /opt/case/stock/logs/PersistTransToMysql.php 2>&1
 
-# Êý¾ÝÑ¹Ëõ±£´æ
+# æ•°æ®åŽ‹ç¼©ä¿å­˜
 cd /opt/data/stock/ && tar -cjf /opt/data/stock.${dt}.tar.bz2 ${dt}/*
 
-# É¾³ýÔ­ÎÄ¼þ
+# åˆ é™¤åŽŸæ–‡ä»¶
 #cd /opt/data/stock/ && rm -rf /opt/data/stock/${dt}
 
-# ±¸·ÝÊý¾Ý¿â±í£¬²¢Ñ¹Ëõ±£´æ
+# å¤‡ä»½æ•°æ®åº“è¡¨ï¼Œå¹¶åŽ‹ç¼©ä¿å­˜
 dtYmd=${dt//-/}
 mysqldump -uroot -pdev_pass stock trans_${dtYmd} > /opt/data/trans_${dtYmd}.sql
 cd /opt/data/ && bzip2 /opt/data/trans_${dtYmd}.sql

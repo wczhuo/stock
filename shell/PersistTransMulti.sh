@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# ×¢Òâ»»ĞĞ·û±ØĞëÎªLF
+# æ³¨æ„æ¢è¡Œç¬¦å¿…é¡»ä¸ºLF
 
 if [ -n "$1" ]; then
     dateStart=$1
@@ -29,9 +29,9 @@ do
     echo ${dt}
 #    echo "/opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php ${dt}"
 #    /opt/app/php/bin/php /opt/case/stock/PersistTransToMysql.php ${dt}
-    # Êı¾İÑ¹Ëõ±£´æ
+    # æ•°æ®å‹ç¼©ä¿å­˜
      tar -cjf /opt/data/stock.${dt}.tar.bz2 ${dt}/*
 
-    # É¾³ıÔ­ÎÄ¼ş
+    # åˆ é™¤åŸæ–‡ä»¶
 #    cd /opt/data/stock/ && rm -rf /opt/data/stock/${dt}
 done
