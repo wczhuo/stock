@@ -2,6 +2,8 @@
 
 # 注意换行符必须为LF
 
+source ././profile
+
 if [ -n "$1" ]; then
     dateStart=$1
 else

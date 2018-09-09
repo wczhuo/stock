@@ -1,0 +1,4 @@
+source /etc/profile
+export php=/opt/app/php/bin/php
+export stockExecDir=/opt/case/stock/
+export stockDataDir=/opt/data/stock/
