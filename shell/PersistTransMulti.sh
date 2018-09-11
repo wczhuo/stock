@@ -2,7 +2,7 @@
 
 # 注意换行符必须为LF
 
-source ././profile
+source /opt/case/stock/shell/profile
 
 if [ -n "$1" ]; then
     dateStart=$1

@@ -2,7 +2,7 @@
 
 # 注意换行符必须为LF
 
-source ././profile
+source /opt/case/stock/shell/profile
 
 #for dt in `seq -w 1 6`
 #do
