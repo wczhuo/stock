@@ -17,7 +17,7 @@ else
 fi
 
 ${php} ${stockExecDir}/GetTransList.php ${dt} > ${stockExecDir}/logs/GetTransList.txt 2>&1
-${php} ${stockExecDir}/Get163ChdData.php ${dt} > ${stockExecDir}/logs/Get163ChdData.php 2>&1
+#${php} ${stockExecDir}/Get163ChdData.php ${dt} > ${stockExecDir}/logs/Get163ChdData.php 2>&1
 ${php} ${stockExecDir}/PersistTransToMysql.php ${dt} > ${stockExecDir}/logs/PersistTransToMysql.php 2>&1
 
 # 数据压缩保存
