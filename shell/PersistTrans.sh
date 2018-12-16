@@ -32,3 +32,4 @@ dtYmd=${dt//-/}
 mysqldump -uroot -pdev_pass stock trans_${dtYmd} > /opt/data/trans_${dtYmd}.sql
 cd /opt/data/ && bzip2 /opt/data/trans_${dtYmd}.sql
 mv /opt/data/trans_${dtYmd}.sql.bz2 /opt/case/stock/trans/
+mysql -uroot -pdev_pass -Dstock  -e"drop table trans_${dtYmd}"
