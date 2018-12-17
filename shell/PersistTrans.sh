@@ -18,7 +18,7 @@ fi
 
 ${php} ${stockExecDir}/GetTransList.php ${dt} > ${stockExecDir}/logs/GetTransList.txt 2>&1
 #${php} ${stockExecDir}/Get163ChdData.php ${dt} > ${stockExecDir}/logs/Get163ChdData.php 2>&1
-${php} ${stockExecDir}/PersistTransToMysql.php ${dt} > ${stockExecDir}/logs/PersistTransToMysql.php 2>&1
+#${php} ${stockExecDir}/PersistTransToMysql.php ${dt} > ${stockExecDir}/logs/PersistTransToMysql.php 2>&1
 
 # 数据压缩保存
 cd ${stockDataDir} && tar -cjf /opt/data/stock.${dt}.tar.bz2 ${dt}/*
@@ -28,8 +28,8 @@ rm -rf ${stockDataDir}/${dt}
 #cd /opt/data/stock/ && rm -rf /opt/data/stock/${dt}
 
 # 备份数据库表，并压缩保存
-dtYmd=${dt//-/}
-mysqldump -uroot -pdev_pass stock trans_${dtYmd} > /opt/data/trans_${dtYmd}.sql
-cd /opt/data/ && bzip2 /opt/data/trans_${dtYmd}.sql
-mv /opt/data/trans_${dtYmd}.sql.bz2 /opt/case/stock/trans/
-mysql -uroot -pdev_pass -Dstock  -e"drop table trans_${dtYmd}"
+#dtYmd=${dt//-/}
+#mysqldump -uroot -pdev_pass stock trans_${dtYmd} > /opt/data/trans_${dtYmd}.sql
+#cd /opt/data/ && bzip2 /opt/data/trans_${dtYmd}.sql
+#mv /opt/data/trans_${dtYmd}.sql.bz2 /opt/case/stock/trans/
+#mysql -uroot -pdev_pass -Dstock  -e"drop table trans_${dtYmd}"
